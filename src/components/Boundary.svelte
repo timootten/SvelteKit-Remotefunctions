@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { cn } from '$lib/utils';
 	import type { Snippet } from 'svelte';
 
 	interface Props {
@@ -12,5 +13,14 @@
 </script>
 
 <svelte:boundary {failed} pending={browser ? pending : undefined}>
-	{@render children?.()}
+	{#if $effect.pending()}
+		{@render pending?.()}
+	{/if}
+	<div
+		class={cn({
+			hidden: $effect.pending()
+		})}
+	>
+		{@render children?.()}
+	</div>
 </svelte:boundary>

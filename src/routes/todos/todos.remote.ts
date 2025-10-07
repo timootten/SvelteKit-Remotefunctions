@@ -2,8 +2,6 @@ import { form, query } from "$app/server";
 import { sleep } from "$lib/utils";
 import { db, todoSchema } from "../../lib/server/db";
 
-
-
 export const getTodos = query(async () => {
   await sleep(1000); // simulate network delay
   return db.todos;

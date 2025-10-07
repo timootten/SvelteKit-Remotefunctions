@@ -7,9 +7,10 @@
 <form
 	{...createTodo.enhance(async ({ form, data, submit }) => {
 		try {
+			form.reset();
 			await submit().updates(
-				getTodos().withOverride((current) => [
-					...current,
+				getTodos().withOverride((todos) => [
+					...todos,
 					{
 						id: Math.random().toString(36).substring(2, 9),
 						title: data.title,
@@ -17,7 +18,6 @@
 					}
 				])
 			);
-			form.reset();
 
 			console.log('Todo created');
 		} catch (error) {

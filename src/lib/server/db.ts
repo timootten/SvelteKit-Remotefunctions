@@ -14,5 +14,6 @@ export type Todo = z.infer<typeof todoSchema>;
 let todos: Todo[] = [];
 
 export const db = {
-  todos
+  todos,
+  likes: 0
 };
